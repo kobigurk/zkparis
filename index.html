@@ -1,40 +1,475 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+	<title>ZK Paris</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/solarized.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/animate/plugin.js"></script>
+	<script src="plugin/animate/svg.min.js"></script>
+
+	<style>
+		@keyframes waving {
+			0% {
+				transform-box: fill-box;
+				transform-origin: bottom right;
+				transform: rotate(0.1turn);
+			}
+
+			50% {
+				transform-box: fill-box;
+				transform-origin: bottom right;
+				transform: rotate(-0.1turn);
+			}
+
+			100% {
+				transform-box: fill-box;
+				transform-origin: bottom right;
+				transform: rotate(0.1turn);
+			}
+		}
+
+		@keyframes lineMove {
+			0% {
+				stroke-dashoffset: 100%;
+			}
+
+			100% {
+				stroke-dashoffset: 0%;
+			}
+		}
+
+		@keyframes lineMoveReverse {
+			0% {
+				stroke-dashoffset: 0%;
+			}
+
+			100% {
+				stroke-dashoffset: 100%;
+			}
+		}
+
+
+		.herodotus-fragment.current-fragment~div #path40432,
+		.ezkl-fragment.current-fragment~div #path39694,
+		.ezkl-fragment.current-fragment~div #path39698,
+		.ezkl-fragment.current-fragment~div #path39702,
+		.axiom-fragment.current-fragment~div #path42614,
+		.blyss-fragment.current-fragment~div #path71855,
+		.espresso-fragment.current-fragment~div #path71863,
+		.espresso-fragment.current-fragment~div #path71859,
+		.succinct-fragment.current-fragment~div #path71891,
+		.succinct-fragment.current-fragment~div #path71871,
+		.succinct-fragment.current-fragment~div #path71879,
+		.succinct-fragment.current-fragment~div #path71875,
+		.succinct-fragment.current-fragment~div #path71887 {
+			animation: lineMove 10s linear infinite;
+			stroke: green !important;
+		}
+
+		.axiom-fragment.current-fragment~div #path42622,
+		.risc-zero-fragment.current-fragment~div #path71835 {
+			animation: lineMoveReverse 10s linear infinite;
+			stroke: green !important;
+		}
+
+		.ezkl-fragment.current-fragment~div #gpersonaelogo *,
+		.ezkl-fragment.current-fragment~div #gezkllogo *,
+		.ezkl-fragment.current-fragment~div #gscrolllogo *,
+		.ezkl-fragment.current-fragment~div #gsismologo *,
+		.herodotus-fragment.current-fragment~div #gscrolllogo *,
+		.herodotus-fragment.current-fragment~div #gherodotuslogo *,
+		.axiom-fragment.current-fragment~div #gherodotuslogo *,
+		.axiom-fragment.current-fragment~div #gethereumlogo *,
+		.axiom-fragment.current-fragment~div #gaxiomlogo *,
+		.blyss-fragment.current-fragment~div #gazteclogo *,
+		.blyss-fragment.current-fragment~div #gblysslogo *,
+		.espresso-fragment.current-fragment~div #gazteclogo *,
+		.espresso-fragment.current-fragment~div #gmidenlogo *,
+		.espresso-fragment.current-fragment~div #gespressologo *,
+		.risc-zero-fragment.current-fragment~div #gcartridgelogo *,
+		.risc-zero-fragment.current-fragment~div #grisczerologo *,
+		.succinct-fragment.current-fragment~div #grisczerologo *,
+		.succinct-fragment.current-fragment~div #gmacilogo *,
+		.succinct-fragment.current-fragment~div #gmidenlogo *,
+		.succinct-fragment.current-fragment~div #gaxiomlogo *,
+		.succinct-fragment.current-fragment~div #gsuccinctlogo *,
+		.succinct-fragment.current-fragment~div #ggnosislogo *,
+		.capsule-fragment.current-fragment~div #gcapsulelogo *,
+		.ingo-fragment.current-fragment~div #gingologo *,
+		.ztf-fragment.current-fragment~div #gztflogo *,
+		.zkv-fragment.current-fragment~div #gzkvlogo *,
+		.zkv-fragment.current-fragment~div #gzkvsecure * {
+			stroke: green !important;
+			fill: green !important;
+		}
+
+		#textpower100:has(+ #textpower300.visible) {
+			visibility: hidden !important;
+		}
+
+		#textpower300:has(+ #textpower400.visible) {
+			visibility: hidden !important;
+		}
+
+		#textpower400:has(+ #textpower900.visible) {
+			visibility: hidden !important;
+		}
+
+		#textpower900:has(+ #textpower1100.visible) {
+			visibility: hidden !important;
+		}
+
+		svg {
+			overflow: visible;
+			max-width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h3>Can't we all just get along?</h3>
+				<h5>Kobi Gurkan</h5>
+				<div style="height: 100px"><img src="assets/Geometry Logo-05.svg" /></div>
+			</section>
+			<section>
+				<div>
+					<h3>First we have to define what an L2 is</h3>
+					<div style="height: 200px"><img src="assets/rollups.webp" /></div>
+				</div>
+				<br />
+				<h3 class="fragment">Just kidding ☺️</h3>
+			</section>
+			<section>
+				<h3><span class="fragment fade-in" data-fragment-index="1">Blockchains</span><br /><span
+						class="fragment strike" data-fragment-index="0">People</span> were smaller back then</h3>
+				<img class="fragment" data-fragment-index="2" style="width:30%" src="assets/bitcoinhand.png" />
+			</section>
+			<section data-auto-animate>
+				<h2>ZK in 2024</h2>
+				<img style="width: 50%" src="assets/kobigurk_futuristic_street_where_all_the_people_are_happy_and_e_314473c8-aba9-40f4-9a0c-6e183c7f8da9.png" />
+			</section>
+			<section data-auto-animate>
+				<h2>ZK in 2024</h2>
+				<img style="width: 50%" src="assets/kobigurk_futuristic_street_where_all_the_people_are_happy_and_e_5f4e9502-eae8-4dfb-9214-35056ac30f3b.png" />
+			</section>
+			<section data-auto-animate>
+				<h2>ZK in 2024</h2>
+				<img style="width: 50%" src="assets/kobigurk_futuristic_street_where_all_the_people_are_happy_and_e_a8a8291d-8934-4e26-91fe-57307fc2a71c.png" />
+			</section>
+			<section>
+				<span class="fragment" data-fragment-index="0"></span>
+				<span class="fragment" data-fragment-index="1"></span>
+				<span class="fragment df-fragment" data-fragment-index="2"></span>
+				<span class="fragment scroll-fragment" data-fragment-index="3"></span>
+				<span class="fragment sismo-fragment" data-fragment-index="4"></span>
+				<span class="fragment ezkl-fragment" data-fragment-index="5"></span>
+				<span class="fragment herodotus-fragment" data-fragment-index="6"></span>
+				<span class="fragment axiom-fragment" data-fragment-index="7"></span>
+				<span class="fragment aztec-fragment" data-fragment-index="8"></span>
+				<span class="fragment blyss-fragment" data-fragment-index="9"></span>
+				<span class="fragment miden-fragment" data-fragment-index="10"></span>
+				<span class="fragment espresso-fragment" data-fragment-index="11"></span>
+				<span class="fragment maci-fragment" data-fragment-index="12"></span>
+				<span class="fragment cartridge-fragment" data-fragment-index="13"></span>
+				<span class="fragment risc-zero-fragment" data-fragment-index="14"></span>
+				<span class="fragment succinct-fragment" data-fragment-index="15"></span>
+				<span class="fragment rect-fragment" data-fragment-index="16"></span>
+				<span class="fragment capsule-fragment" data-fragment-index="17"></span>
+				<span class="fragment ingo-fragment" data-fragment-index="18"></span>
+				<span class="fragment ztf-fragment" data-fragment-index="19"></span>
+				<span class="fragment zkv-fragment" data-fragment-index="20"></span>
+				<span class="fragment done-fragment" data-fragment-index="21"></span>
+
+				<div data-animate data-src="assets/bitmap.svg">
+					<!--
+				{
+					"setup": [
+						{
+						"element": "#g72925",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "0"}]
+						},
+						{
+						"element": "#text34910",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "1"}]
+						},
+						{
+						"element": "#textpower100",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "2"}]
+						},
+						{
+						"element": "#textpower1000",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "2"}]
+						},
+						{
+						"element": "#ggnosislogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "2"}]
+						},
+						{
+						"element": "#gdflogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "2"}]
+						},
+						{
+						"element": "#gscrolllogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "3"}]
+						},
+						{
+						"element": "#gsismologo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "4"}]
+						},
+						{
+						"element": "#gpersonaelogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "4"}]
+						},
+						{
+						"element": "#gezkllogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "5"}]
+						},
+						{
+						"element": "#path39694",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "5"}]
+						},
+						{
+						"element": "#path39698",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "5"}]
+						},
+						{
+						"element": "#path39702",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "5"}]
+						},
+						{
+						"element": "#path40432",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "6"}]
+						},
+						{
+						"element": "#gherodotuslogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "6"}]
+						},
+						{
+						"element": "#path42614",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "7"}]
+						},
+						{
+						"element": "#path42622",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "7"}]
+						},
+						{
+						"element": "#gethereumlogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "7"}]
+						},
+						{
+						"element": "#gaxiomlogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "7"}]
+						},
+						{
+						"element": "#textpower300",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "7"}]
+						},
+						{
+						"element": "#gazteclogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "8"}]
+						},
+						{
+						"element": "#path71855",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "9"}]
+						},
+						{
+						"element": "#gblysslogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "9"}]
+						},
+						{
+						"element": "#gmidenlogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "10"}]
+						},
+						{
+						"element": "#gespressologo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "11"}]
+						},
+						{
+						"element": "#textpower400",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "11"}]
+						},
+						{
+						"element": "#path71859",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "11"}]
+						},
+						{
+						"element": "#path71863",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "11"}]
+						},
+						{
+						"element": "#gmacilogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "12"}]
+						},
+						{
+						"element": "#textpower900",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "12"}]
+						},
+						{
+						"element": "#gcartridgelogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "13"}]
+						},
+						{
+						"element": "#grisczerologo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "14"}]
+						},
+						{
+						"element": "#textpower1100",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "14"}]
+						},
+						{
+						"element": "#path71835",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "14"}]
+						},
+						{
+						"element": "#gsuccinctlogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#path71891",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#path71871",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#path71879",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#path71875",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#path71887",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "15"}]
+						},
+						{
+						"element": "#rect71819",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "16"}]
+						},
+						{
+						"element": "#gcapsulelogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "17"}]
+						},
+						{
+						"element": "#gingologo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "18"}]
+						},
+						{
+						"element": "#gztflogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "19"}]
+						},
+						{
+						"element": "#gzkvsecure",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "20"}]
+						},
+						{
+						"element": "#gzkvlogo",
+						"modifier": "attr",
+						"parameters": [{"class": "fragment", "data-fragment-index": "20"}]
+						}
+					]
+				}
+				-->
+				</div>
+			</section>
+			<section>
+				<h3>This is just the start</h3>
+			</section>
+			<section>
+				<h3>Looking forward to:</h3>
+				<h4>
+					<ul>
+						<li class="fragment">ZK composition tooling</li>
+						<li class="fragment">Client side ZK</li>
+						<li class="fragment">MPC</li>
+						<li class="fragment">FHE</li>
+					</ul>
+				</h4>
+			</section>
+			<section>
+				<h3>
+					<div>We work together</div>
+					<div class="fragment">We compose and integrate</div>
+					<div class="fragment">The world is improved</div>
+					<h3>
+			</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script type="module">
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealAnimate],
+			animate: {
+				autoplay: true
+			},
+		});
+	</script>
+</body>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
 </html>
